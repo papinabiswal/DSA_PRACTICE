@@ -1,5 +1,6 @@
 // Bruteforce solution 
-
+// Tc: O(M+N)
+// SC: O(M+N)
 var backspaceCompare = function(s, t) {
     let temp1 = [];
   let temp2 = [];
@@ -28,6 +29,8 @@ var backspaceCompare = function(s, t) {
 
 // optimised
 // start from last index
+// Tc: O(M+N)
+// SC: O(1)
 var backspaceCompare = function(s, t) {
   function generateNextValidChar(str, index) {
       let backspaceCount = 0;
