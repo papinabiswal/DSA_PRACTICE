@@ -1,4 +1,6 @@
 // Bruteforce solution 
+// Backspace String Compare
+// s = "ab#c", t = "ad#c"
 // Tc: O(M+N)
 // SC: O(M+N)
 var backspaceCompare = function(s, t) {

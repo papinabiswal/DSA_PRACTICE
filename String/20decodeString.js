@@ -1,4 +1,5 @@
 // Decoded String at Index
+// s = "leet2code3", k = 10
 // let the string is "ab23" , if you want to know 4th index value how to find it
 // first find the size (when letter is there add and when number will be there multiply)
 // so here ab(2) and digit(2) and digit (3) so the size will be 12
