@@ -2,23 +2,22 @@
 // if n ==2 , return "11" it count the number of sting and that number
 
 
-function countAndSay(n){
-    if(n === 1) return "1";
+var countAndSay = function(n) {
+  let result = "1";
 
-    let say = countAndSay(n-1);
-    let result = "";
-
-    for(let i=0; i< say.length; i++){
-        let ch = say[i];
-        let count =1;
-        
-        while(i < say.length -1 && say[i] === say[i+1]){
-          count++;
-          i++;
+  for(let i=2; i <=n; i++){
+     let curr ='';
+     let count =1;
+     for(let j=1; j<= result.length; j++){
+        if(j < result.length && result[j] === result[j-1]){
+             count++
+        } else {
+           curr += count + result[j-1];
+           count=1;
         }
-        result += count.toString() + ch;
-    }
-    console.log(result);
-    return result;
-}
+     }
+     result = curr;
+  }
+  return result;
+};
 countAndSay(3);
