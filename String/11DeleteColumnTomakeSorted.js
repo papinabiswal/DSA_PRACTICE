@@ -17,7 +17,7 @@ function minDeletionSize(strs){
             }
         }
     }
-
+     console.log(count)
     return count;
 }
 minDeletionSize(["cba","daf","ghi"]);

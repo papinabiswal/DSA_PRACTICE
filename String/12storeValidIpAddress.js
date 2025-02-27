@@ -5,6 +5,9 @@
 // 1. Check if the current segment is less than or equal to 255.  
 // 2. Check if the length of the segment is 1. The first character of the segment 
 //    can be `0` only if the length of the segment is 1.
+// part+1: no matter how many digit we add in one segment, but we can add only one part.
+// Time Complexity: O(n³)
+// Space Complexity: O(n)
 
 var restoreIpAddresses = function(s) {
     let result =[];
