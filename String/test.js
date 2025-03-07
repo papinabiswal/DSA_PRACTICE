@@ -1,24 +1,53 @@
-function isVowel(ch){
-    ch = ch.toLowerCase();
-    return "AEIOUaeiou".includes(ch);
+
+// TC: O(n) length of expr
+// SC: O(1);
+function fractionAddition(expr){
+   let i=0;
+   let n = expr.length;
+
+   let nue = 0;
+   let deno = 1;
+
+   function gcd(a, b) {
+      return b === 0 ? a : gcd(b, a % b);
   }
-  
-  function stringGreat(s){
-    let n = s.length;
-    let mid = n/2;
-  
-    let countL= 0;
-    let countR =0;
-    let i=0, j =mid;
-    while(i < mid && j < n){
-       if(isVowel(s[i])){
-          countL++;
+   
+   while(i < n){
+      let currNue =0;
+      let currDeno = 0;
+
+       let isNeg = (expr[i] === '-');
+
+       if(expr[i] === '-' || expr[i] === '+'){
+           i++;
        }
-      if(isVowel(s[j])){
-          countR++;
+
+       while(i < n && !isNaN(expr[i])){
+           let val = expr[i] - '0';
+           currNue = (currNue * 10) + val;
+           i++
        }
-    }
-    console.log("test");
-    return countL == countR;
-  }
-  stringGreat("book");
+
+       if(isNeg){
+           currNue *= -1;
+       }
+       i++;
+
+       while(i < n && !isNaN(expr[i])){
+           let val = expr[i] - '0';
+           currDeno = (currDeno * 10) + val;
+           i++;
+       }
+       nue = (nue * currDeno) + (currNue * deno);
+       deno = deno * currDeno;
+
+      let commonDivisor = gcd(Math.abs(nue), deno);
+
+      nue /= commonDivisor;
+      deno /= commonDivisor;
+   }
+
+   console.log(nue + "/" + deno);
+   return nue + "/" + deno; 
+}
+fractionAddition("-1/2+1/2");

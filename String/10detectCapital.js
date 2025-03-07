@@ -18,7 +18,7 @@ function detectCapital(word){
          }
          return true;
      }
-     if(isCapital(word) || isSmall(word) || isSmall(word.slice(1))){
+     if(isCapital(word) || isSmall(word) || (word[0] === word[0].toUpperCase() && isSmall(word.slice(1)))){
          return true;
      }
      return false;

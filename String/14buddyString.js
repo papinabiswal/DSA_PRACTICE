@@ -1,3 +1,7 @@
+// swap two letter in s which will be equal to goal
+// s = "ab", goal = "ba"
+// You can swap s[0] = 'a' and s[1] = 'b' to get "ba", which is equal to goal.
+
 //TC: O(n)
 //SC: O(n)
 var buddyStrings = function(s, goal) {
