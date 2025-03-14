@@ -10,13 +10,21 @@ houseRob([1,2,3,1]);
 
 // Recursion + memo
 
-var rob = function(nums, i=0, memo={}) {
-    if(i >= nums.length) return 0;
-    if(i in memo) return memo[i]
-    let take = nums[i] + rob(nums, i+2, memo);
-    let skip = rob(nums, i+1, memo);
-    memo[i] = Math.max(take, skip);
-    return memo[i];
+var rob = function(nums) {
+    let memo = {};
+
+    function solve(idx) {
+        if (idx >= nums.length) return 0;
+        if (idx in memo) return memo[idx];
+
+        let take = nums[idx] + solve(idx + 2);
+        let skip = solve(idx + 1);
+
+        memo[idx] = Math.max(take, skip);
+        return memo[idx];
+    }
+
+    return solve(0);
 };
 
 // Buttom up approach

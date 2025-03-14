@@ -33,31 +33,32 @@ var maxAlternatingSum = function(nums) {
 };
 
 // Dynamic Approach
+// it's 2d because here two variable is changing
+// one is index and and the other one is  isEven(0-> even, 1-> odd)
+// if we try to find dp[i][even] = dp[i-1][odd] - nums[i] -> i-1 will be the prev length, and the length will be odd
+// - nums[i] because the index will be odd
+// i will start from 1 else if we start from 0 , d[i-1] will be out of bound
 var maxAlternatingSum = function(nums) {
     let n = nums.length;
-    
-    let dp = new Array(n).fill(0).map(()=> Array(2).fill(0));
-
-    dp[0][0] = Math.max(-nums[0], 0);
-    dp[0][1] = Math.max(nums[0], 0);
+    let dp = new Array(n).fill(0).map(() => Array(2).fill(0));
+     
+     dp[0][0] = nums[0];
+     dp[0][1] = 0;
 
     for(let i=1; i< n; i++){
-        dp[i][0] = Math.max(dp[i-1][1] - nums[i], dp[i-1][0]);
-        dp[i][1] = Math.max(dp[i-1][0] + nums[i], dp[i-1][1])
+        dp[i][0] = Math.max(dp[i-1][1] + nums[i], dp[i-1][0]);
+        dp[i][1] = Math.max(dp[i-1][0] - nums[i], dp[i-1][1]);
     }
     return Math.max(dp[n-1][0], dp[n-1][1]);
 }
 
 // constant time approach
 var maxAlternatingSum = function(nums) {
-    let even = Math.max(nums[0], 0), odd = Math.max(-nums[0], 0);
+    let even = nums[0], odd = 0;
 
     for (let i = 1; i < nums.length; i++) {
-        let newEven = Math.max(odd + nums[i], even);
-        let newOdd = Math.max(even - nums[i], odd);
-
-        even = newEven;
-        odd = newOdd;
+        even = Math.max(even, odd + nums[i]);
+        odd = Math.max(odd, even - nums[i]);
     }
 
     return even;

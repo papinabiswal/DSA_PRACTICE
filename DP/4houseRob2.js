@@ -1,3 +1,7 @@
+// this is same houseRobber1
+// but here 1st and last home is connected
+// so the new array will be either from 0 to n-2
+// or from 0 to n-1
 // Recursion
 function robLinear(nums, start, end){
     if(start > end) return 0;
