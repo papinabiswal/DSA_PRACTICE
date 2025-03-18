@@ -51,3 +51,26 @@ var minInsertions = function(s) {
 
     return dp[0][n - 1];
 };
+
+// 1d
+var minInsertions = function(s) {
+    let n = s.length;
+    let prev = new Array(n).fill(0);
+    let curr = new Array(n).fill(0);
+
+    for (let L = 2; L <= n; L++) {
+        for (let i = 0; i <= n - L; i++) {
+            let j = i + L - 1;
+
+            if (s[i] === s[j]) {
+                curr[i] = prev[i + 1];  // No new insertions needed
+            } else {
+                curr[i] = 1 + Math.min(prev[i], curr[i + 1]);  // Insert at either end
+            }
+        }
+        [prev, curr] = [curr, prev];  // Swap rows for space optimization
+    }
+
+    return prev[0];  // The final result is stored in prev[0]
+};
+
