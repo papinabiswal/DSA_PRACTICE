@@ -21,3 +21,24 @@ var permute = function(nums) {
     solve([]);
     return result;
 };
+
+// swap i with idx else duplicate item will come
+
+var permute = function(nums) {
+    let result =[];
+    let n = nums.length;
+
+    function backtrack(idx){
+        if(idx === n){
+            return result.push([...nums]);
+        }
+
+        for(let i= idx; i< n; i++){
+           [nums[i], nums[idx]] = [nums[idx], nums[i]];
+            backtrack(idx+1);
+            [nums[i], nums[idx]] = [nums[idx], nums[i]]; // undo
+        }
+    }
+    backtrack(0);
+    return result;
+};
