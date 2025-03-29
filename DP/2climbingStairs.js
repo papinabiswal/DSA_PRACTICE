@@ -6,6 +6,11 @@ var climbStairs = function(n, ) {
 };
 
 // Recursion + memoization
+// climbStairs(5) = climbStairs(4) + climbStairs(3)
+// climbStairs(4) = climbStairs(3) + climbStairs(2)
+// climbStairs(3) = climbStairs(2) + climbStairs(1)
+// climbStairs(2) = 2
+// climbStairs(1) = 1
 
 var climbStairs = function(n, memo={}) {
     if(n in memo) return memo[n]

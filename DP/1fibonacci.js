@@ -10,6 +10,11 @@ fib(5);
 // recursion + memoization
 // TC: O(n)
 // SC:O(n)
+// fib(5) = fib(4) + fib(3)
+// fib(4) = fib(3) + fib(2)
+// fib(3) = fib(2) + fib(1)
+// fib(2) = fib(1) + fib(0)
+// Each function call recomputes Fibonacci values multiple times, leading to an exponential time complexity O(2ⁿ). so we need memo
 var fib = function(n, memo={}) {
     if(n in memo) return memo[n];
     if(n <= 1) return n;

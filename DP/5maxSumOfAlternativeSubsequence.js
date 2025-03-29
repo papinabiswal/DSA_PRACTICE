@@ -42,8 +42,8 @@ var maxAlternatingSum = function(nums) {
     let n = nums.length;
     let dp = new Array(n).fill(0).map(() => Array(2).fill(0));
      
-     dp[0][0] = nums[0];
-     dp[0][1] = 0;
+     dp[0][0] = nums[0]; // take for 1st even value
+     dp[0][1] = 0;       // not take even value, so the alternate sum is 0
 
     for(let i=1; i< n; i++){
         dp[i][0] = Math.max(dp[i-1][1] + nums[i], dp[i-1][0]);
