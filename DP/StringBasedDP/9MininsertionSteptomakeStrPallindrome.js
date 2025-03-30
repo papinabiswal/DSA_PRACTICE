@@ -37,6 +37,8 @@ var minInsertions = function(s) {
 var minInsertions = function(s) {
     let n = s.length;
     let dp = new Array(n).fill(null).map(() => new Array(n).fill(0));
+
+    // A single character is inherently a palindrome and requires 0 insertions.
     
     for (let L = 2; L <= n; L++) { // L is the length of substring
         for (let i = 0; i < n - L + 1; i++) {
