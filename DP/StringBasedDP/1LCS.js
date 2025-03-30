@@ -8,9 +8,9 @@ var longestCommonSubsequence = function(text1, text2) {
         if(m === 0 || n === 0 || i>=m || j >= n) return 0;
 
         if(text1[i] === text2[j]){
-           return 1+solve(i+1, j+1);
+           return 1+solve(i+1, j+1);  // if both are equal increase i and j
         } 
-            return Math.max(solve(i+1, j), solve(i, j+1));
+            return Math.max(solve(i+1, j), solve(i, j+1)); // if not try both possiblity
 
     }
     return solve(0, 0);
