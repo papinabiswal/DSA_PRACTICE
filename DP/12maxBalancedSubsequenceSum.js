@@ -65,3 +65,5 @@ var maxBalancedSubsequenceSum = function(nums) {
  
      return maxSum;
  };
+
+ // will check with fenwick tree

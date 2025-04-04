@@ -2,8 +2,8 @@
 function shortestCommonSupersequence(s1, s2) {
     let m = s1.length, n = s2.length;
     function solve(i, j){
-       if (i === m) return n - j;
-       if(j === n) return m-i;
+       if (i === m) return n - j; // remaining character
+       if(j === n) return m-i;  // remaining character
         
         if(s1[i] === s2[j]){
              return 1+ solve(i+1, j+1);
