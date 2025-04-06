@@ -52,3 +52,37 @@ dfsRecursive(graph, "A");
 //   B   C
 //   |   |
 //   D   E
+
+ function dfsRecursive(V, edges){
+    let adj = new Array(V).fill(0).map(()=> []);
+    for(let [u, v] of edges){
+        adj[u].push(v);
+        adj[v].push(u);
+    }
+    let visited = new Array(V).fill(false);
+
+    function dfs(start){
+        visited[start] = true;
+        console.log(start);
+        for(let neighbour of adj[start]){
+            if(!visited[neighbour]){
+                dfs(neighbour);
+            } 
+        }
+    }
+    for(let i=0; i<V; i++){
+        if(!visited[i]){
+            dfs(i);
+        }
+    }
+}
+
+let V1 = 6;
+let edges1 = [
+    [0, 1],
+    [0, 2],
+    [1, 3],
+    [1, 4],
+    [2, 5]
+];
+dfsRecursive(V1, edges1);
