@@ -10,16 +10,20 @@ var findOrder = function(numCourses, prerequisites) {
 
     const queue = [];
     for(let i=0; i< numCourses; i++){
-        if(inDegree[i] === 0) queue.push(i);
+        if(inDegree[i] === 0) {
+            result.push(i);
+            queue.push(i);
+        }
     }
 
     while(queue.length > 0){
        let node = queue.shift();
-       result.push(node);
+       
        
        for(let neighbour of adj[node]){
           inDegree[neighbour]--;
           if(inDegree[neighbour] === 0){
+            result.push(neighbour);
             queue.push(neighbour);
           }
        }

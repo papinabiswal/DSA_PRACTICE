@@ -8,18 +8,20 @@ var canFinish = function(numCourses, prerequisites) {
     }
 
     const queue =[];
+    let completed = 0;
     for (let i = 0; i < numCourses; i++) {
         if(inDegree[i] === 0){
+            completed++;
             queue.push(i);
         }
     }
-    let completed = 0;
+    
     while(queue.length > 0){
         let node = queue.shift();
-        completed++;
     for (let neighbor of adj[node]) {
             inDegree[neighbor]--;
             if (inDegree[neighbor] === 0) {
+                completed++;
                 queue.push(neighbor);
             }
         }
