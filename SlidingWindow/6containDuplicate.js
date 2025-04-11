@@ -16,3 +16,18 @@ var containsNearbyDuplicate = function(nums, k) {
     }
     return false;
 };
+
+// or
+
+var containsNearbyDuplicate = function(nums, k) {
+    const seen = {};
+
+    for (let i = 0; i < nums.length; i++) {
+        if (seen.has(nums[i]) && i - seen[nums[i]] <= k) {
+        return true;
+        }
+        seen[nums[i]] = i; // value ka index store krna hai
+    }
+
+    return false;
+};
