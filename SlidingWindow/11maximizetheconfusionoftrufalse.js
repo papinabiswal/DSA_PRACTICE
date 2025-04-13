@@ -34,3 +34,21 @@ var maxConsecutiveAnswers = function(answerKey, k) {
 
     return result;
 };
+
+ // OR
+ var maxConsecutiveAnswers = function(answerKey, k) {
+    let result = k;
+    let mp = { 'T': 0, 'F': 0}
+    let i =0;
+  
+    for(let j=0; j< answerKey.length; j++){
+        mp[answerKey[j]]++
+  
+        while(Math.min(mp['T'], mp['F']) > k){
+            mp[answerKey[i]]--;
+            i++;
+        }
+        result = Math.max(result, j - i + 1);
+    }
+    return result;
+  };

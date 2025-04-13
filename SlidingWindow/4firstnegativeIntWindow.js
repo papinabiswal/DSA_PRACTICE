@@ -14,7 +14,7 @@ function firstNegInt(arr, k) {
             queue.push(j);
         }
         if(j-i+1 === k){
-            while(queue.length > 0 && queue[0] < i){
+            while(queue.length > 0 && queue[0] < i){ // i ka pos agr -ve element pe tha pehele queue se us value ko remove karo
                 queue.shift();
             }
             

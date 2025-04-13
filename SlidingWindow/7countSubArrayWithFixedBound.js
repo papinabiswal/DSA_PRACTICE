@@ -1,3 +1,6 @@
+// It includes both minK and maxK
+
+// All numbers inside are between minK and maxK
 var countSubarrays = function(nums, minK, maxK) {
     let res = 0;
     let badIdx = -1, leftIdx = -1, rightIdx = -1;
