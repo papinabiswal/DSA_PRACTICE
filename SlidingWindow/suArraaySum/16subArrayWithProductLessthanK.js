@@ -4,20 +4,19 @@
 // The condition is product < k (not exactly equal) — so atMost is enough.
 
 function numSubarrayProductLessThanK(nums, k) {
-    if (k <= 1) return 0;
+    if(k <= 1) return 0;
+    let i=0, j=0,prod=1, result=0;
+    let n = nums.length;
 
-    let prod = 1, left = 0, result = 0;
+    while(j < n){
+       prod *= nums[j];
 
-    for (let right = 0; right < nums.length; right++) {
-        prod *= nums[right];
-
-        while (prod >= k) {
-            prod /= nums[left];
-            left++;
-        }
-
-        result += right - left + 1;
+       while(prod >= k){
+          prod /= nums[i];
+          i++;
+       }
+       result += j-i+1; 
+       j++
     }
-
     return result;
 }
