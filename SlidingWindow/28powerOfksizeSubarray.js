@@ -37,3 +37,33 @@ var resultsArray = function(nums, k) {
  
      return result;
  };
+
+ // monotonic deque
+ var resultsArray = function(nums, k) {
+    const n = nums.length;
+    const result = [];
+    const deque = []; // Monotonic deque (will store increasing consecutive numbers)
+
+    for (let j = 0; j < n; j++) {
+
+        if (deque.length === k) {
+            deque.shift(); // Remove the front if deque size is k
+        }
+
+        if (deque.length > 0 && deque[deque.length - 1] !== nums[j] - 1) {
+            deque.length = 0; // Not consecutive, reset the deque
+        }
+
+        deque.push(nums[j]); // Add current element
+
+        if (j >= k - 1) {
+            if (deque.length === k) {
+                result.push(deque[deque.length - 1]); // The last element is max due to increasing order
+            } else {
+                result.push(-1);
+            }
+        }
+    }
+
+    return result;
+};
