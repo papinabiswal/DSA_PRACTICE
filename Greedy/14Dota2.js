@@ -23,3 +23,45 @@ var predictPartyVictory = function(senate) {
     }
     return radient.length > 0 ? "Radiant" : "Dire"
 };
+
+// Example Step-by-Step for "RDD":
+// Start:
+
+// Radiant: [0]
+
+// Dire: [1, 2]
+
+// Round 1:
+
+// Compare Radiant[0] = 0 and Dire[0] = 1
+
+// 0 < 1 → Radiant wins!
+
+// Dire[1] is banned ❌
+
+// Radiant[0] goes to next round: 0 + 3 = 3 → Radiant = [3]
+
+// Dire = [2]
+
+// Round 2:
+
+// Radiant: [3]
+
+// Dire: [2]
+
+// Compare 3 and 2
+
+// 2 < 3 → Dire wins!
+
+// Radiant[3] is banned ❌
+
+// Dire[2] goes to next round: 2 + 3 = 5 → Dire = [5]
+
+// Now:
+
+// Radiant: []
+
+// Dire: [5]
+
+// Radiant has no toys left → Dire wins!
+
