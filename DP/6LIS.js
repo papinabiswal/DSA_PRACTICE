@@ -14,7 +14,11 @@ var lengthOfLIS = function(nums) {
 };
 
 // Recursion + Memo
+// Because prevIdx can be -1,
+// but array indices cannot be negative in JavaScript! 🚀
 
+// So to store memoization for prevIdx = -1,
+// you shift everything by +1.
 var lengthOfLIS = function(nums) {
     let n = nums.length
     let memo = new Array(n+1).fill(-1).map(() => new Array(n + 1).fill(-1));
@@ -39,6 +43,8 @@ var lengthOfLIS = function(nums) {
     let n = nums.length
      
     if (n === 0) return 0;
+    // sare element khud me ek subsequence, that's why assign to one. so this will maintain the length of subsesequence of that index
+    // i par end hone wala sbse bada subsequence 
     let dp = new Array(n).fill(1); 
 
     let maxLIS = 1;
@@ -46,7 +52,7 @@ var lengthOfLIS = function(nums) {
     for(let i=0; i< n; i++){
        for(let j=0; j< i; j++){
         if(nums[j] < nums[i]) {
-           dp[i] = Math.max(dp[i], 1+dp[j]);
+           dp[i] = Math.max(dp[i], 1+dp[j]); // here it is checking the length in dp of that index. i pe end hone wala subsequence length and j pe end hone wala subsequence length. +1 becacause i ke saath add ho rha
            maxLIS = Math.max(maxLIS, dp[i]);
         }
 
