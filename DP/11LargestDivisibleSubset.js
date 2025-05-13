@@ -25,29 +25,36 @@ var largestDivisibleSubset = function(nums) {
 };
 
 // Buttom up approach
+
 var largestDivisibleSubset = function(nums) {
-    nums.sort((a, b) => a - b)
+    nums.sort((a,b)=> a-b);
+    let dp = new Array(nums.length).fill(1);
+    let prev = new Array(nums.length).fill(-1);
+    let n = nums.length;
 
-    const dp = Array(nums.length).fill(1)
-    const prev = Array(nums.length).fill(-1)
-    let maxIndex = 0
+    let maxLIS = 1;
+    let last_choosen_idx = 0;
 
-    for (let i = 1; i < nums.length; i++) {
-        for (let j = 0; j < i; j++) {
-            if (nums[i] % nums[j] === 0 && dp[i] < dp[j] + 1) {
-                dp[i] = dp[j] + 1
-                prev[i] = j
-            }
-        }
-        if (dp[i] > dp[maxIndex])
-            maxIndex = i
+    for(let i= 1; i< n; i++){
+       for(let j=0; j< i; j++){
+           if(nums[i] % nums[j] === 0){
+              if(dp[i] < 1+dp[j]){
+                   dp[i] = 1 + dp[j];
+                   prev[i] = j;
+              }
+
+              if(maxLIS < dp[i]){
+                  maxLIS = dp[i];
+                  last_choosen_idx = i;
+              }
+           }
+       }
     }
 
-    const result = []
-    while (maxIndex !== -1) {
-        result.unshift(nums[maxIndex])
-        maxIndex = prev[maxIndex]
+    let result = [];
+    while(last_choosen_idx !== -1){
+       result.push(nums[last_choosen_idx]);
+       last_choosen_idx = prev[last_choosen_idx];
     }
-
-    return result
+    return result;
 };
