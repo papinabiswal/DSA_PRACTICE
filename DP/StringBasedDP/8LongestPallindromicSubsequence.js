@@ -34,28 +34,24 @@ var longestPalindromeSubseq = function(s) {
 };
 
 // Buttom up with blue print
+// dp[0][n-1]: This represents the length of the longest palindromic subsequence in the full string s[0...n-1].
 
 var longestPalindromeSubseq = function(s) {
-    let n = s.length;
-    if (n === 0) return 0;
+  let n = s.length;
 
-    let dp = new Array(n).fill(null).map(() => new Array(n).fill(0));
+  let dp = new Array(n).fill(null).map(()=> new Array(n).fill(0));
 
-    // Base Case: Single character subsequences are palindromes of length 1
-    for(let i=0; i< n; i++){
-       dp[i][i] = 1;
-    }
-
-    // Fill DP Table for substrings of length L
-    for (let L = 2; L <= n; L++) {
-        for(let i=0; i+L-1 < n; i++){
-            let j = i+L-1;
-            if(s[i] === s[j]){
-               dp[i][j] = 2 + dp[i + 1][j - 1]; // Match case
-            } else {
-                dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1])
-            }
-        }
-    }
-    return dp[0][n-1];
+  for(let L=1; L <= n; L++){
+     for(let i=0; i+L-1< n; i++){
+          let j=i+L-1;
+          if(i === j){
+             dp[i][j] = 1;
+          } else if(s[i] === s[j]){
+             dp[i][j] = 2+dp[i+1][j-1];
+          } else{
+              dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]);
+          }
+     }
+  }
+  return dp[0][n-1];
 };
