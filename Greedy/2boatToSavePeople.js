@@ -1,3 +1,8 @@
+// - Sort people by weight
+// - Try to pair lightest and heaviest
+// - If sum ≤ limit → send both
+// - Else → send heaviest alone
+// - Continue until all are placed
 var numRescueBoats = function(people, limit) {
     people.sort((a,b)=> a-b);
     let boat =0

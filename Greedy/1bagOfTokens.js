@@ -1,3 +1,8 @@
+// - Sort tokens
+// - Play cheapest token if enough power → +score
+// - Else, use 1 score to regain power from most expensive token → -score
+// - Track max score
+// - Stop when no move is possible
 var bagOfTokensScore = function(tokens, power) {
     tokens.sort((a,b)=> a-b);
     let currScore =0;

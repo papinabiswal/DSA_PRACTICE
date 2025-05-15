@@ -1,3 +1,8 @@
+// ## Palindrome Partitioning (Backtracking + DP)
+// - Precompute all palindromes using DP: t[i][j] = isPalindrome(i to j)
+// - Use DFS to explore every cut position
+// - Only recurse deeper if s[i...j] is a palindrome (checked in O(1))
+// - Backtrack to explore all partition paths
 var partition = function(s) {
     let n = s.length;
     let t = new Array(n).fill(null).map(()=> new Array(n).fill(false));
@@ -23,7 +28,7 @@ var partition = function(s) {
           return;
        }
        for(let j=i; j< n; j++){
-          if(t[i][j]){
+          if(t[i][j]){ // check pallindrome O(1)
               currPartition.push(s.substring(i, j+1));
               solve(j+1);
               currPartition.pop();
