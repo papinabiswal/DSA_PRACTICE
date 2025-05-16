@@ -1,3 +1,9 @@
+// ## longestPalindrome (Hash Map + Greedy)
+// - Count frequency of all words
+// - Pair up reversed words like "ab" + "ba"
+// - Use symmetric words like "aa" in pairs
+// - If one symmetric word is left, use it at the center
+// - Each pair contributes 4 characters, center adds 2
 var longestPalindrome = function(words) {
     let freq = {};
 
@@ -10,7 +16,7 @@ var longestPalindrome = function(words) {
 
     for(const word of words){
         let rev = word[1] + word[0];
-       if(rev !== word){
+       if(rev !== word){  // if word is not symmetric like "aa" or "bb"
            if(freq[word] > 0 && freq[rev] > 0){
               result += 4;
               freq[word]--;

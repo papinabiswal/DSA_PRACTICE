@@ -1,3 +1,8 @@
+// If length is 1 → return ""(Note: "Can't break a 1-letter mirror. Return nothing.")
+// - Traverse left half:
+// - If any char ≠ 'a', change to 'a' and return
+// - If all are 'a', change last char to 'b'
+
 var breakPalindrome = function(palindrome) {
     let n = palindrome.length;
     if(n === 1) return "";
