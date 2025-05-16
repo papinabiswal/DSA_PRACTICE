@@ -1,3 +1,8 @@
+// 1. Calculate how many rocks each bag needs to become full
+// 2. Sort the space needed in increasing order (fill smaller ones first)
+// 3. Use additional rocks greedily to fill bags
+// 4. Return count of full bags
+
 var maximumBags = function(capacity, rocks, additionalRocks) {
     // Step 1: Calculate how many rocks each bag needs to become full
     const spaceLeft = capacity.map((cap, i) => cap - rocks[i]);
