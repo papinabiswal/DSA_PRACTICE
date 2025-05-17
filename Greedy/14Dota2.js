@@ -1,3 +1,10 @@
+// - Use two queues: one for Radiant (R), one for Dire (D)
+// - Push initial indices into respective queues
+// - Simulate rounds:
+//   - Compare front of each queue
+//   - Smaller index bans the other, re-enters next round with `index + n`
+// - Return the party that still has members left
+
 var predictPartyVictory = function(senate) {
     let n = senate.length;
     const radient =[];

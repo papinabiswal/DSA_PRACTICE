@@ -1,3 +1,11 @@
+// - Traverse nums[] from right to left
+// - For each nums[i], if it's > nums[i+1]:
+//   - Split nums[i] into parts so each ≤ nums[i+1]
+//   - parts = ceil(nums[i] / nums[i+1])
+//   - Add (parts - 1) to operations
+//   - Update nums[i] = floor(nums[i] / parts)
+// - Return total operations
+
 var minimumReplacement = function(nums) {
     let n = nums.length;
     let operations = 0;

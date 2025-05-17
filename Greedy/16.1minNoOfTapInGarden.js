@@ -1,3 +1,11 @@
+// - Build an array `startEnd[]` where startEnd[i] = farthest point any tap can reach starting at i.
+// - Traverse from i = 0 to n:
+//     - Track `currEnd`: current watered range
+//     - Track `maxEnd`: farthest point we can reach from current window
+//     - If i > maxEnd → impossible → return -1
+//     - If i > currEnd → open a new tap, update currEnd = maxEnd
+// - Return number of taps opened
+
 var minTaps = function(n, ranges) {
     let startEnd = new Array(n + 1).fill(0);
  
