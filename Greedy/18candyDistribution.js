@@ -1,3 +1,7 @@
+// - Step 1: Left to right pass, compare with left neighbor.
+// - Step 2: Right to left pass, compare with right neighbor.
+// - Step 3: Take max of both arrays at each index for the final count.
+
 var candy = function(ratings) {
     const n = ratings.length;
 
@@ -51,6 +55,13 @@ var candy = function(ratings) {
 };
 
 // O(1) space
+// - Start by giving each child 1 candy
+// - Traverse ratings:
+//   - Skip equal ratings
+//   - Count increasing slope (add candies)
+//   - Count decreasing slope (add candies)
+//   - Subtract min(peak, valley) to avoid double counting
+// - Return total candies
 var candy = function(ratings) {
     const n = ratings.length;
 
