@@ -1,3 +1,11 @@
+// - Start window at index k
+// - curMin = nums[k]
+// - While we can expand:
+//    - Expand toward larger neighbor to maintain better score
+//    - Update curMin
+//    - Update result = max(result, curMin × window size)
+// - Return result
+
 var maximumScore = function(nums, k) {
     const n = nums.length;
     let i = k;
