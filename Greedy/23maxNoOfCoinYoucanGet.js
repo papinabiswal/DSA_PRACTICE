@@ -19,6 +19,13 @@ var maxCoins = function(piles) {
 };
 
 // optimise
+
+// - Sort the piles.
+// - Divide piles into groups of 3 (largest, your pick, smallest).
+// - Skip the smallest third (for the third player).
+// - Pick every second coin from the rest.
+// - Add them up and return.
+
 var maxCoins = function(piles) {
     piles.sort((a, b) => a - b); // Sort the array in ascending order
    
@@ -31,3 +38,4 @@ var maxCoins = function(piles) {
 
    return result;
 };
+maxCoins([1,2,3,4,5,6,7,8,9])

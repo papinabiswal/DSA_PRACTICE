@@ -1,23 +1,27 @@
 // TC: O(n logn)
 // sc: O(n)
+
+// - Step 1: Count frequency of each number
+// - Step 2: Sort the frequencies in ascending order
+// - Step 3: Remove k elements from the lowest frequency groups
+// - Step 4: Return how many unique numbers remain
 var findLeastNumOfUniqueInts = function(arr, k) {
-    const freqMap = new Map();
- 
-    for(const num of arr){
-       freqMap.set(num, (freqMap.get(num) || 0)+1);
-    } 
- 
-    const freqArray = Array.from(freqMap.values());
-    freqArray.sort((a,b)=> a-b);
- 
-    for(let i=0; i< freqArray.length; i++){
-        k-= freqArray[i];
+    let freq = {}
+
+    for(let num of arr){
+       freq[num] = (freq[num] || 0) + 1;
+    }
+
+    let freqArray = Object.values(freq).sort((a,b)=> a-b);
+
+    for(let i=0; i < freqArray.length; i++){
+        k -= freqArray[i];
         if(k < 0){
-         return freqArray.length -i
+           return freqArray.length - i;
         }
     }
     return 0;
- };
+};
 
  //TC: O(n)
  var findLeastNumOfUniqueInts = function(arr, k) {

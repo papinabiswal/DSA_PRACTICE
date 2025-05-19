@@ -1,3 +1,10 @@
+// - Sort the array
+// - Set arr[0] = 1
+// - Loop through the array:
+//    - If gap > 1 with previous → reduce current to prev + 1
+//    - Track max value
+// - Return max
+
 var maximumElementAfterDecrementingAndRearranging = function(arr) {
     arr.sort((a, b) => a - b); // Sort the array in ascending order
  
