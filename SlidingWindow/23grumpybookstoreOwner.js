@@ -1,3 +1,7 @@
+// 1. Count base happiness where grumpy = 0.
+// 2. Sliding window of size `minutes` to find max customers to recover (grumpy = 1).
+// 3. Add both to get the final answer.
+
 var maxSatisfied = function(customers, grumpy, minutes) {
     let n = customers.length;
     let baseHappy = 0;

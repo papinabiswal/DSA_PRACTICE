@@ -12,7 +12,7 @@ var maxSubarrayLength = function(nums, k) {
 
        while(freq[nums[j]] > k){
            freq[nums[i]]--;
-           if(freq[nums[1]] === 0){
+           if(freq[nums[i]] === 0){
              delete freq[nums[i]];
            }
            i++;

@@ -7,7 +7,7 @@ var maxConsecutiveAnswers = function(answerKey, k) {
     while(j < n){
         if(answerKey[j] === 'F') countF++;
         
-        while(countF > k){
+        while(countF > k){ // we canot flip more than k times
             if(answerKey[i] === 'F'){
                 countF--;
             }
