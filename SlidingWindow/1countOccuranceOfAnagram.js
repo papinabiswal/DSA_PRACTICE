@@ -1,3 +1,11 @@
+// - Make a count array of pattern's frequency.
+// - Slide a window of size k over txt.
+// - For each char in window: subtract from count.
+// - When window size == k:
+//    - If all values in count are 0 → anagram found.
+//    - Restore count of char at i, move window forward.
+// - Count all such windows.
+
 function allZero(count) {
     return count.every(val => val === 0);
 }
