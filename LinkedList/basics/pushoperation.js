@@ -134,7 +134,7 @@ class SingleLinkedList {
 
         let next;
         let prev = null;
-        for(let i = 0; i < this.length; i++) {
+        for(const element of this) {
             next = node.next;
             node.next = prev;
             prev = node;

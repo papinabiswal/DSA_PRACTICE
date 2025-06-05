@@ -5,6 +5,7 @@
 // 2. Skip the next node (which is now a duplicate).
 // 3. The current node appears to be deleted.
 
+// head = [4,5,1,9], node = 5
 // node.val = node.next.val; → copy value of 1 into current node → list becomes 4 → 1 → 1 → 9
 
 // node.next = node.next.next; → skip over the duplicate 1 → list becomes 4 → 1 → 9
