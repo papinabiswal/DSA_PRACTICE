@@ -4,6 +4,8 @@
 // store the heightvalue in a map with height: [val]
 // loop in map, push the value in a result .
 
+// collect leaves -> remove them -> repeat
+
 function findLeaves(root) {
     let heightMap = new Map();
     let maxHeight =0;

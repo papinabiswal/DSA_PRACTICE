@@ -1,39 +1,24 @@
-// O(n2)
-function pruneTree(root) {
-    if (!root) return null;
+// Total no of nodes
+// DFS -> Left child = 2*i, right child = 2*i+1; 
+// to number each node. 
+// if index > nodecount return false;
 
-    // Helper function to check if any node in the subtree contains a 1
-    function checkOne(node) {
-        if (!node) return false;
-        if (node.val === 1) return true;
-        return checkOne(node.left) || checkOne(node.right);
-    }
+function isCompleteTree(root) {
+    if (!root) return true;
 
-    // If left or right subtree does not contain 1, prune them
-    if (!checkOne(root.left)) root.left = null;
-    if (!checkOne(root.right)) root.right = null;
+    let totalNodes = 0;
+    const countNodes = (node) => {
+        if (!node) return 0;
+        return 1 + countNodes(node.left) + countNodes(node.right);
+    };
+    totalNodes = countNodes(root);
 
-     // Recursively prune left and right subtrees
-     root.left = pruneTree(root.left);
-     root.right = pruneTree(root.right);
+    const dfs = (node, i) => {
+        if (!node) return true;
+        if (i > totalNodes) return false;
+        return dfs(node.left, 2 * i) && dfs(node.right, 2 * i + 1);
+    };
 
-    // If current node becomes a leaf and has value 0, prune it
-    if (!root.left && !root.right && root.val === 0) return null;
-
-    return root;
+    return dfs(root, 1);
 }
 
-// O(n)
-
-var pruneTree = function(root) {
-    if (!root) return null;
-
-    root.left = pruneTree(root.left);
-    root.right = pruneTree(root.right);
-
-    if (!root.left && !root.right && root.val === 0) {
-        return null;
-    }
-
-    return root;
-};

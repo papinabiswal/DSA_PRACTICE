@@ -1,3 +1,4 @@
+// it will be done with right side preOrder by defining level
 var rightSideView = function(root) {
     let result = [];
 
