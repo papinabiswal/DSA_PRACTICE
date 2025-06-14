@@ -1,4 +1,11 @@
+// count node O(n) time complexity
+function countNodes(root) {
+    if (!root) return 0;
 
+    return 1 + countNodes(root.left) + countNodes(root.right);
+}
+
+// count node O(1) time complexity
 var countNodes = function(root) {
     if(!root) return 0;
 

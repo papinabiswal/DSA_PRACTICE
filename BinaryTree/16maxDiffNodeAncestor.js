@@ -32,16 +32,19 @@ var maxAncestorDiff = function(root) {
 // calculate the difference between max and min value;
 
 var maxAncestorDiff = function(root) {
-    function maxDiff(node, minV, maxV){
-        if(!node) return Math.abs(maxV - minV);
+    
+    let maxDiff = 0
+     function repeat(node, minVal, maxVal) {
+         if (!node) return 
 
-        minV = Math.min(minV, node.val);
-        maxV = Math.max(maxV, node.val);
+         minVal = Math.min(minVal, node.val)
+         maxVal = Math.max(maxVal, node.val)
 
-        const left = maxDiff(node.left, minV, maxV); // left subtree
-        const right = maxDiff(node.right, minV, maxV); // right subtree
-
-        return Math.max(left, right);
-    }
-    return maxDiff(root, root.val, root.val);
-};
+         maxDiff = Math.max(maxDiff, Math.abs(maxVal - minVal))
+         
+         repeat(node.left, minVal, maxVal)
+         repeat(node.right, minVal, maxVal)
+     }
+     repeat(root, root.val, root.val)
+     return maxDiff
+ };

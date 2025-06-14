@@ -17,8 +17,6 @@ function addOneRow(root, val, depth) {
 
             node.left.left = lTemp; // add the temp val after new node
             node.right.right = rTemp;
-
-            return node;
         }
 
         node.left = add(node.left, val, depth, curr + 1);
