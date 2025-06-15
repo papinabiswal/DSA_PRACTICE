@@ -6,23 +6,22 @@ function bfsIterative(V, edges){
     }
     let visited = new Array(V).fill(false);
 
-    for(let i=0; i<V; i++){
-        if(!visited[i]){
-            let queue = [i];
-            visited[i] = true;
-
-            while(queue.length > 0){
-                let node = queue.shift();
-                 console.log(node);
-                for(let neighbour of adj[node]){
-                    if(!visited[neighbour]){
-                        queue.push(neighbour);
-                        visited[neighbour] = true;
-                    }
-                }
+    let result =[];
+    let queue =[0];
+    visited[0] = true;
+    
+    while(queue.length){
+        let start = queue.shift();
+        result.push(start);
+        
+        for(let neighbour of adj[start]){
+            if(!visited[neighbour]){
+                visited[neighbour] = true;
+                queue.push(neighbour)
             }
         }
     }
+   return result;
 }
 
 let V1 = 6;

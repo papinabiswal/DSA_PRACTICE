@@ -1,3 +1,4 @@
+// https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 function isCyclicDirected(V, edges){
     let adj = new Array(V).fill(0).map(()=>[]);
     for(let [u,v] of edges){
