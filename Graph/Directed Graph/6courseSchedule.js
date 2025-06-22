@@ -1,30 +1,33 @@
-var canFinish = function(numCourses, prerequisites) {
+function canFinish(numCourses, prerequisites) {
+    // Step 1: Build adjacency list and in-degree array
     let adj = new Array(numCourses).fill(0).map(()=>[]);
     const inDegree = new Array(numCourses).fill(0);
 
-    for(let [course, pre] of prerequisites){
-        adj[pre].push(course);
-        inDegree[course]++;
+    for (const [a, b] of prerequisites) {
+        adj[b].push(a);        // b → a (you must take b before a)
+        inDegree[a]++;         // a has one more prerequisite
     }
 
-    const queue =[];
-    let completed = 0;
+    // Step 2: Queue for courses with in-degree 0 (no prerequisites)
+    const queue = [];
     for (let i = 0; i < numCourses; i++) {
-        if(inDegree[i] === 0){
-            completed++;
-            queue.push(i);
-        }
+        if (inDegree[i] === 0) queue.push(i);
     }
-    
-    while(queue.length > 0){
-        let node = queue.shift();
-    for (let neighbor of adj[node]) {
+
+    // Step 3: BFS
+    let count = 0;
+    while (queue.length) {
+        const course = queue.shift();
+        count++;
+
+        for (const neighbor of adj[course]) {
             inDegree[neighbor]--;
             if (inDegree[neighbor] === 0) {
-                completed++;
                 queue.push(neighbor);
             }
         }
     }
-    return completed === numCourses;
-};
+
+    // Step 4: Check if all courses are completed
+    return count === numCourses;
+}

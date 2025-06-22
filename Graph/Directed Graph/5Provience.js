@@ -1,49 +1,59 @@
 // using DFS
-var findCircleNum = function(isConnected) {
-    let n = isConnected.length;
-    let visited = new Set();
-    let provienceCount =0;
+// TC: O(V^2) SC: O(V)
+function findCircleNum(isConnected) {
+  const V = isConnected.length;
+  const visited = new Array(V).fill(false);
+  let provinceCount = 0;
 
-    function dfs(city){
-      visited.add(city);
+  function dfs(node) {
+      visited[node] = true;
 
-      for(let neighbour =0; neighbour < n; neighbour++){
-            if(isConnected[city][neighbour] === 1 && !visited.has(neighbour)){
-               dfs(neighbour);
-            }
+      for (let neighbor = 0; neighbor < V; neighbor++) {
+          if (isConnected[node][neighbor] === 1 && !visited[neighbor]) {
+              dfs(neighbor);
+          }
       }
-    }
-    for(let city =0; city < n; city++){
-        if(!visited.has(city)){
-            dfs(city);
-            provienceCount++;
-        }
-    }
-   return provienceCount;
-};
+  }
+
+  for (let i = 0; i < V; i++) {
+      if (!visited[i]) {
+          provinceCount++;
+          dfs(i); // Traverse all connected nodes (1 province)
+      }
+  }
+
+  return provinceCount;
+}
+
 
 // using BFS
 var findCircleNum = function(isConnected) {
-    let n = isConnected.length;
-    let visited = new Set();
-    let provienceCount =0;
-    
-    for(let city=0; city < n; city++){
-       if(!visited.has(city)){
+  let V = isConnected.length;
+  let visited = new Array(V).fill(false);
 
-        const queue = [city];
-        while(queue.length > 0){
-          const current = queue.shift();
-          visited.add(current);
+  let provinces = 0;
+  
 
-          for (let neighbor = 0; neighbor < n; neighbor++) {
-            if (isConnected[current][neighbor] === 1 && !visited.has(neighbor)) {
-                queue.push(neighbor);
-            }
+  function bfs(start){
+      visited[start] = true;
+      let queue = [start];
+
+      while(queue.length){
+         const node = queue.shift();
+         for(let neighbour =0; neighbour < V; neighbour++){
+          if(!visited[neighbour] && isConnected[node][neighbour]){
+              visited[neighbour] = true; 
+              queue.push(neighbour);
           }
         }
-        provienceCount++;
-       }
-    }
-    return provienceCount;
+      }
+  }
+
+  for(let i= 0; i < V; i++){
+      if(!visited[i]){
+          bfs(i);
+          provinces++;
+      }
+  }
+  return provinces;
 };
