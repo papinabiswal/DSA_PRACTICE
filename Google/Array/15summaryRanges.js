@@ -18,25 +18,32 @@ var summaryRanges = function(nums) {
  };
 
  //missing ranges
- function formatRange(start, end) {
-    return start === end ? `${start}` : `${start}->${end}`;
-}
+ function missingRange(nums, lower, upper){
+    let res = [];
+    for(let i=0; i<= nums.length; i++){
+        let curr = (i< nums.length) ? nums[i] : upper+1;
 
- var findMissingRanges = function(nums, lower, upper) {
-    const result = [];
-    let prev = lower - 1;
-
-    for (let i = 0; i <= nums.length; i++) {
-        let curr = (i < nums.length) ? nums[i] : upper + 1;
-
-        if (curr - prev >= 2) {
-            result.push(formatRange(prev + 1, curr - 1));
+        if(lower < curr){
+           if(curr -lower === 1){
+                res.push(`${lower}`)
+           } else {
+               res.push(`${lower}->${curr-1}`);
+           } 
         }
-
-        prev = curr;
+        lower = curr+1
     }
+    return res;
+}
+missingRange([0, 1, 3, 50, 75], 0, 99);
 
-    return result;
+
+// missing number best solution
+var missingNumber = function(nums) {
+    let res = nums.length;
+    for(let i=0; i< nums.length; i++){
+       res += i-nums[i];
+    }
+    return res;
 };
-findMissingRanges([0, 1, 3, 50, 75], 0, 99)
+missingNumber([3,0,1])
 

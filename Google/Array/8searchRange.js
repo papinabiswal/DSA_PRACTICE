@@ -1,3 +1,4 @@
+// Find First and Last Position of Element in Sorted Array
 var searchRange = function(nums, target) {
     function findBound(isFirst) {
         let left = 0, right = nums.length - 1;
