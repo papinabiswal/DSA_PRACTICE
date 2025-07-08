@@ -1,3 +1,4 @@
+// 992.Subarrays with K Different Integers
 var subarraysWithKDistinct = function(nums, k) {
     function slidingWindow(nums,k){
         let i=0, j=0, count =0;

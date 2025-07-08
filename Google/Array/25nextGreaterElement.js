@@ -1,20 +1,19 @@
-var nextGreaterElement = function(nums1, nums2) {
-    let nextGreaterElem = new Map();
-    let stack = [];
-
-    for(let num of nums2){
-        while(stack.length && stack[stack.length-1] < num){
-            let smaller = stack.pop();
-            nextGreaterElem.set(smaller, num);
+// https://www.geeksforgeeks.org/problems/next-larger-element-1587115620/1
+function nextLargerElement(arr) {
+    let stack =[];
+    let result = new Array(arr.length).fill(-1);
+    for(let i= arr.length-1; i >= 0;  i--){
+        while(stack.length && stack[stack.length-1] <= arr[i]){
+           stack.pop();
         }
-        stack.push(num);
+        if(stack.length > 0){
+            result[i] = stack[stack.length-1];
+        }
+        stack.push(arr[i]);
     }
-
-    while(stack.length){
-        nextGreaterElem.set(stack.pop(), -1);
-    }
-    return nums1.map(num=> nextGreaterElem.get(num));
-};
+     return result;
+}
+nextLargerElement([1, 3, 2, 4]);
 
 // next greater element 2
 var nextGreaterElements = function(nums) {
@@ -22,17 +21,21 @@ var nextGreaterElements = function(nums) {
     const result = new Array(n).fill(-1);
     const stack = [];
 
-    for (let i = 0; i < 2 * n; i++) {
-        const current = nums[i % n];
+    for (let i = 2 * n - 1; i >= 0; i--) {
+        const index = i % n;
 
-        while (stack.length && nums[stack[stack.length - 1]] < current) {
-            const index = stack.pop();
-            result[index] = current;
+        // Pop smaller or equal elements
+        while (stack.length > 0 && stack[stack.length - 1] <= nums[index]) {
+            stack.pop();
         }
 
-        if (i < n) {
-            stack.push(i);
+        // If stack is not empty, this is the next greater
+        if (stack.length > 0) {
+            result[index] = stack[stack.length - 1];
         }
+
+        // Push current element into stack
+        stack.push(nums[index]);
     }
 
     return result;
