@@ -12,6 +12,10 @@ var numIdenticalPairs = function(nums) {
 };
 
 //optimised
+// [1,2,3,1,1,3]
+// for 1 -> 4
+// it will have pair of 4c2 = 4*(4-1)/2 = 6
+// 2 traversal
 var numIdenticalPairs = function(nums) {
     let result =0;
     let map = new Map();

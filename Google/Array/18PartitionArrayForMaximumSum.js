@@ -17,6 +17,28 @@ var maxSumAfterPartitioning = function(arr, k) {
     return solve(0);
 };
 
+// memoization
+var maxSumAfterPartitioning = function(arr, k) {
+    const n = arr.length;
+    const memo = new Array(n).fill(-1);
+
+    function solve(idx){
+        if(idx >= n) return 0;
+        if(memo[idx] !== -1) return memo[idx];
+        let result = 0;
+        let currMax = -1;
+
+        for(let i=idx; i< n && i-idx+1 <= k; i++){
+              currMax = Math.max(currMax, arr[i]);
+              let length = i-idx+1;
+              result = Math.max(result, length * currMax + solve(i+1));
+        }
+        memo[idx] = result;
+        return result;
+    }
+    return solve(0);
+};
+
 // optimized solution using dp
 var maxSumAfterPartitioning = function(arr, k) {
     const n = arr.length;
