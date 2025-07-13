@@ -25,21 +25,19 @@ var lengthOfLongestSubstring = function(s) {
 // Sliding window
 
 var lengthOfLongestSubstring = function(s) {
-    let start = 0;
-    let maxLength = 0;
-    const map = new Map();  // stores character and its last index
+    let charSet = new Set();
+    let left =0;
+    let right = 0;
+    let maxLength =0;
 
-    for (let end = 0; end < s.length; end++) {
-        const char = s[end];
-
-        // If character is already seen and its index is within the window
-        if (map.has(char) && map.get(char) >= start) {
-            start = map.get(char) + 1;
+    while(right < s.length){
+        while(charSet.has(s[right])){
+             charSet.delete(s[left]);
+             left++;
         }
-
-        map.set(char, end);  // update or insert the current character's index
-        maxLength = Math.max(maxLength, end - start + 1);
+        charSet.add(s[right]);
+        maxLength = Math.max(maxLength, right-left+1);
+        right++;
     }
-
-    return maxLength;
+   return maxLength;
 };
