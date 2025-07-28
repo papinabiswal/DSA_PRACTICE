@@ -26,3 +26,26 @@ var minOperations = function(s) {
     }
     return Math.min(countForAlternate0, countForAlternate1);
 };
+
+
+// Target 1: "0101" (starts with 0)
+// i=0: '0' ✅ ok
+
+// i=1: '1' ✅ ok
+
+// i=2: '0' ✅ ok
+
+// i=3: '0' ❌ should be '1' → need 1 change
+
+// ✅ countForAlternate0 = 1
+
+// Target 2: "1010" (starts with 1)
+// i=0: '0' ❌ should be '1'
+
+// i=1: '1' ❌ should be '0'
+
+// i=2: '0' ❌ should be '1'
+
+// i=3: '0' ✅ ok
+
+// ✅ countForAlternate1 = 3
