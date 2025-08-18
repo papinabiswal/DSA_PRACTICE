@@ -1,6 +1,7 @@
 // KMP Algorithm string matching
 // TC: O(M+N)
 // SC: O(N) (for lps array)
+// LPS[i] means 0 to i Longest prefix and suffix
 function computeLps(pattern){
     const lps = new Array(pattern.length).fill(0);
     let length = 0;  // length of longest prefix suffix
