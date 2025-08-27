@@ -62,3 +62,9 @@ class MyHashSet {
     }
 }
 
+
+let set = new MyHashSet();
+set.add(10);
+console.log(set.contains(10)); // true
+set.remove(10);
+console.log(set.contains(10)); // false
