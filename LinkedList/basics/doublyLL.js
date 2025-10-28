@@ -58,7 +58,7 @@ class doublyLL {
     }
 
     unshift(val){
-        let newNode = new Node();
+        let newNode = new Node(val);
         if(!this.head){
             this.head = newNode;
             this.tail = newNode;
@@ -88,7 +88,7 @@ class doublyLL {
            let counter = this.length-1;
             while(counter !== index){
                current = current.prev;
-               count--;
+               counter--;
             }
         }
         return current;

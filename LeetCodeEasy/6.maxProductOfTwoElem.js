@@ -1,5 +1,6 @@
 // Input: nums = [3,4,5,2]
 // Output: 12 
+// https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/description/
 
 var maxProduct = function(nums) {
     let maxNo = nums[0];

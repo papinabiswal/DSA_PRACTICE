@@ -1,3 +1,10 @@
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
 function detectAndRemoveLoop(head) {
     let slow = head;
     let fast = head;
@@ -38,3 +45,29 @@ function removeLoop(meetingPoint, head) {
     // Break the loop
     ptr2.next = null;
 }
+
+
+// Create nodes
+let head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+head.next.next.next.next = new Node(5);
+
+// 1 → 2 → 3 → 4 → 5 → null
+console.log(detectAndRemoveLoop(head)); 
+
+
+
+// Create nodes
+let head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+head.next.next.next.next = new Node(5);
+head.next.next.next.next.next = head.next.next;
+
+// 1 → 2 → 3 → 4 → 5
+//          ↑       ↓
+//          └───────┘
+console.log(detectAndRemoveLoop(head)); 

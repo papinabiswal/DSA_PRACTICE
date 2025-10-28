@@ -14,28 +14,24 @@ var reverseList = function(head) {
 // TC: O(n)
 // SC: O(1)
 
-// 1 -> 2 -> 3 -> null
-// 1st Iteration:
-// nextNode = current.next → nextNode = 2
-// Reverse the link: current.next = prev → 1.next = null
-// Move prev to current → prev = 1
-// Move current to nextNode → current = 2
-
-// 2nd Iteration:
-// nextNode = current.next → nextNode = 3
-// Reverse the link: current.next = prev → 2.next = 1
-// Move prev to current → prev = 2
-// Move current to nextNode → current = 3
+// always remember 3 pointer we need in reverse linked list
+// one is prev which is null, curr-> which will point to node, and next-> which will point to next node of curr;
+// store the next node in nextNode ;
+// and move the curr next pointer to prev;
+// then move prev to curr;
+// and curr to nextNode until curr is null;
+// then retun prev;
 
 var reverseList = function(head) {
-    let current = head;
-    let prev =null;
+    let prev = null;
+    let curr = head;
+    let nextNode = null;
 
-    while(current){
-       let nextNode = current.next;
-       current.next = prev;
-       prev = current;
-       current = nextNode;
+    while(curr){
+        nextNode = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = nextNode;
     }
     return prev;
 };

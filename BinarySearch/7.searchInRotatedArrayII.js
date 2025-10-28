@@ -11,28 +11,35 @@ var search = function(nums, target) {
 
 // **************************************************************************************************************
 
+// same a serah in rotated array but with out duplicates
+// only here if duplicatez are there then we will have to skip them while finding pivot
+// and then we will do binary search in the respective half
+// time complexity will be o(n) in worst case if all elements are same
+// otherwise o(log n)
+// space complexity o(1)
+
 var search = function(nums, target) {
-    const findPivotWithDuplicates = (nums) => {
+     const findMinIndex = (nums) => {
         let left = 0;
         let right = nums.length - 1;
 
         while (left < right) {
-            const mid = Math.floor((left + right) / 2);
 
+            // Skip duplicates from both ends (left and right)
+            while(left < right && nums[left] === nums[left+1])
+              left++;
+
+            while(left < right && nums[right] === nums[right-1])
+              right--;
+
+            const mid = Math.floor((left + right) / 2);
             if (nums[mid] > nums[right]) {
                 left = mid + 1;
-            } else if (nums[mid] < nums[right]) {
-                right = mid;
             } else {
-                // Critical fix: Only reduce right **when necessary**
-                if (nums[right - 1] > nums[right]) {
-                    left = right;
-                    break;
-                }
-                right--;
+                right = mid;
             }
         }
-        return left;
+        return left; // pivot index
     };
 
     const binarySearch = (nums, target, left, right) => {
@@ -45,12 +52,14 @@ var search = function(nums, target) {
         return false;
     };
 
-    const pivot = findPivotWithDuplicates(nums);
+    const pivot = findMinIndex(nums);
 
-    // If array is fully sorted, pivot might be 0
-    if (nums[pivot] <= target && target <= nums[nums.length - 1]) {
+    // Decide which side to search in
+    if (target >= nums[pivot] && target <= nums[nums.length - 1]) {
+        // Target is in right sorted half
         return binarySearch(nums, target, pivot, nums.length - 1);
     } else {
+        // Target is in left sorted half
         return binarySearch(nums, target, 0, pivot - 1);
     }
 };

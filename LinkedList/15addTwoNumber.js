@@ -5,32 +5,22 @@
 //    - Add, compute carry, and build new list
 
 var addTwoNumbers = function(l1, l2) {
-    let stack1 = [];
-    let stack2 = [];
+    let dummy = new ListNode(0);
+    let curr = dummy;
+    let carry = 0;
 
-    while(l1){
-      stack1.push(l1.val);
-      l1 = l1.next;
-    }
-
-    while(l2){
-        stack2.push(l2.val);
-        l2 = l2.next;
-    }
-
-    let carry =0;
-    let result = null;
-
-    while(stack1.length > 0 || stack2.length > 0 || carry > 0 ){
-        let val1 = stack1.pop() || 0;
-        let val2 = stack2.pop() || 0;
+    while (l1 || l2 || carry) {
+        let val1 = l1 ? l1.val : 0;
+        let val2 = l2 ? l2.val : 0;
 
         let total = val1 + val2 + carry;
-        carry = Math.floor(total/10);
+        carry = Math.floor(total / 10);
 
-        let node = new ListNode(total % 10);
-            node.next = result;
-            result = node;
+        curr.next = new ListNode(total % 10); // ✅ append here
+        curr = curr.next;
+
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
     }
-    return result;
+    return dummy.next;
 };
