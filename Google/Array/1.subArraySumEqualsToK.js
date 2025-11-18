@@ -19,6 +19,7 @@ let subarraySum = function(nums, k) {
 
 // Optimized
 // O(n)
+// using prefix sum and hashmap
 
 let subarraySum1 = function(nums, k) {
     let count = 0;

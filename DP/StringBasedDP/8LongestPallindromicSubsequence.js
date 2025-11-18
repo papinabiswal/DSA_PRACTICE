@@ -55,3 +55,24 @@ var longestPalindromeSubseq = function(s) {
   }
   return dp[0][n-1];
 };
+
+// Using LCS
+var longestPalindromeSubseq = function(s) {
+    let t = s.split("").reverse().join("");
+    let m = s.length;
+
+    // DP matrix (m+1) x (m+1)
+    let dp = Array.from({ length: m + 1 }, () => Array(m + 1).fill(0));
+
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= m; j++) {
+            if (s[i - 1] === t[j - 1]) {
+                dp[i][j] = 1 + dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+
+    return dp[m][m];
+};
