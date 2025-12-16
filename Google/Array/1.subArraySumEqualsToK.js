@@ -39,3 +39,30 @@ let subarraySum1 = function(nums, k) {
     }
     return count;
 };
+
+
+// similar question. longest subarray with sum k
+// 325. Maximum Size Subarray Sum Equals k
+var longestSubarraySum = function(nums, k) {
+    let map = new Map(); 
+    map.set(0, -1); // prefix sum 0 occurs before array starts
+    let sum = 0;
+    let maxLen = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i];
+
+        // Check if sum - k exists → means subarray found
+        if (map.has(sum - k)) {
+            let length = i - map.get(sum - k);
+            maxLen = Math.max(maxLen, length);
+        }
+
+        // Store prefix sum **only if not stored before**
+        if (!map.has(sum)) {
+            map.set(sum, i);
+        }
+    }
+
+    return maxLen;
+};

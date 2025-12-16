@@ -1,4 +1,5 @@
 // Longest Substring with At Most K Distinct Characters
+// let  s = "aabacbebebe", k = 3
 function lengthOfLongestSubstringKDistinct(s, k) {
     if (k === 0) return 0;
 

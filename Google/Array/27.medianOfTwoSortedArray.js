@@ -31,53 +31,35 @@ var findMedianSortedArrays = function(nums1, nums2) {
 // TC : O(m+n)
 // SC : O(1)
 var findMedianSortedArrays = function(nums1, nums2) {
-    let m = nums1.length;
-    let n = nums2.length;
-    let size = m + n;
-
-    let idx1 = Math.floor(size / 2) - 1;
-    let element1 = -1;
-
-    let idx2 = Math.floor(size / 2);
-    let element2 = -1;
-
-    let i = 0, j = 0, k = 0;
-
-    // Merge like merge-sort but only track idx1 and idx2
-    while (i < m && j < n) {
-        if (nums1[i] < nums2[j]) {
-            if (k === idx1) element1 = nums1[i];
-            if (k === idx2) element2 = nums1[i];
-            i++;
-        } else {
-            if (k === idx1) element1 = nums2[j];
-            if (k === idx2) element2 = nums2[j];
-            j++;
-        }
-        k++;
+    if(nums1.length > nums2.length){
+        return findMedianSortedArrays(nums2, nums1);
     }
+   let m = nums1.length;
+   let n = nums2.length;
 
-    // Remaining elements from nums1
-    while (i < m) {
-        if (k === idx1) element1 = nums1[i];
-        if (k === idx2) element2 = nums1[i];
-        i++;
-        k++;
-    }
+   let left = 0;
+   let right = m;
 
-    // Remaining elements from nums2
-    while (j < n) {
-        if (k === idx1) element1 = nums2[j];
-        if (k === idx2) element2 = nums2[j];
-        j++;
-        k++;
-    }
+   while(left <= right){
+      let cut1 = Math.floor((left+right)/2);
+      let cut2 = Math.floor((m+n+1)/2) - cut1;
 
-    // If total length is odd
-    if (size % 2 === 1) {
-        return element2;
-    }
+      let left1 = cut1 === 0 ? -Infinity : nums1[cut1-1];
+      let right1 = cut1 ===  m ? Infinity : nums1[cut1];
 
-    // Even length: average the two middle elements
-    return (element1 + element2) / 2;
+      let left2 = cut2 === 0 ? -Infinity : nums2[cut2-1];
+      let right2 = cut2 === n ? Infinity : nums2[cut2];
+
+      if(left1 <= right2 && left2 <= right1){
+          if((m+n)%2 === 0){
+            return (Math.max(left1, left2) + Math.min(right1,right2))/2;
+          } else {
+              return Math.max(left1, left2);
+          }
+      } else if(left1 > right2){
+          right = cut1-1;
+      } else {
+          left = cut1+1;
+      }
+   }
 };

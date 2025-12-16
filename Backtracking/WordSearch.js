@@ -12,10 +12,10 @@ var exist = function(board, word) {
         let temp = board[i][j];
         board[i][j] = '$';
          
-        const result = backtrack(i+1, j, idx+1) ||
-                       backtrack(i-1, j, idx+1) ||
-                       backtrack(i, j+1, idx+1) ||
-                       backtrack(i, j-1, idx+1);
+        const result = backtrack(i+1, j, idx+1) || // up down left right
+                       backtrack(i-1, j, idx+1) || // down up left right
+                       backtrack(i, j+1, idx+1) || // left right up down
+                       backtrack(i, j-1, idx+1);  // right left up down
 
         board[i][j] = temp;
         return result;
