@@ -16,6 +16,7 @@ var maxProduct = function(nums) {
 
 // 2nd approach
 // find the two largest number and multiply them
+// Maximum Product of Two Elements in an Array
 var maxProduct = function(nums) {
     let firstMaxNo = 0;
     let secondMaxNo = 0;
