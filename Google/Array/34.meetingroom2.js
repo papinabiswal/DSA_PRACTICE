@@ -1,19 +1,29 @@
-function minMeetingRooms(intervals) {
-        if (!intervals.length) return 0;
+function meetingRoom2(intervals) {
+    if (intervals.length === 0) return 0;
 
-    let starts = intervals.map(i => i[0]).sort((a,b)=>a-b);
-    let ends   = intervals.map(i => i[1]).sort((a,b)=>a-b);
+    let starts = [];
+    let ends = [];
+
+    for (let [s, e] of intervals) {
+        starts.push(s);
+        ends.push(e);
+    }
+
+    starts.sort((a, b) => a - b);
+    ends.sort((a, b) => a - b);
 
     let rooms = 0;
     let endPtr = 0;
 
-    for (let i = 0; i < intervals.length; i++) {
+    for (let i = 0; i < starts.length; i++) {
         if (starts[i] < ends[endPtr]) {
-            rooms++; // need a new room
+            rooms++;              // need new room
         } else {
-            endPtr++; // free a room
+            endPtr++;             // reuse room
         }
     }
+
     return rooms;
-    }
-minMeetingRooms([[0,10],[10,20],[5,15]]);
+}
+
+meetingRoom2([[0,30],[5,10],[15,20]]);

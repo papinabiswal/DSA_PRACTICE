@@ -25,6 +25,20 @@ var longestPalindrome = function(s) {
     return s.slice(sp, sp+maxLen);
 };
 
+// memoization
+function isPallindrome(s,i,j, dp){
+    if(i > j) return true;
+
+    if(dp[i][j] !== undefined) return dp[i][j];
+
+    if(s[i] === s[j]){
+        dp[i][j] = isPallindrome(s, i+1, j-1, dp);
+        return dp[i][j];
+    }
+    dp[i][j] = false;
+    return false;
+}
+
 // Buttom up + blue print
 
 var longestPalindrome = function(s) {

@@ -19,6 +19,9 @@ var strStr = function(haystack, needle) {
 
 
 // KMP Algorithm string matching
+// TC: O(M+N)
+// SC: O(N) (for lps array)
+// LPS[i] means 0 to i Longest prefix and suffix
 var strStr = function(haystack, needle) {
     let m = haystack.length;
     let n = needle.length;
