@@ -1,13 +1,10 @@
 var minDepth = function(root) {
-    if (!root) return 0;
+    if(!root) return 0;
 
-    // If it's a leaf node
-    if (!root.left && !root.right) return 1;
-
-    let left = root.left ? minDepth(root.left) : Infinity;
-    let right = root.right ? minDepth(root.right) : Infinity;
-
-    return 1 + Math.min(left, right);
+    if(!root.left) return 1 + minDepth(root.right);
+    if(!root.right) return 1 + minDepth(root.left);
+    
+    return 1 + Math.min(minDepth(root.left), minDepth(root.right));
 };
 
 
@@ -17,22 +14,21 @@ var minDepth = function(root) {
     if(!root) return 0;
 
     let queue = [root];
-    let level = 1;
+    let depth = 0;
 
     while(queue.length){
-        let n= queue.length;
+        depth++;
+        let size = queue.length;
 
-        for(let i=0; i< n; i++){
-            let node = queue.shift();
+        for(let i=0; i< size; i++){
+             let node = queue.shift();
 
-            if(!node.left && !node.right){
-                return level;
-            }
-
-            if(node.left) queue.push(node.left);
-            if(node.right) queue.push(node.right);
+             // If it's a leaf node → return immediately
+             if(!node.left && !node.right){
+                return depth;
+             }
+             if(node.left) queue.push(node.left);
+             if(node.right) queue.push(node.right);
         }
-        level++;
     }
-    return level;
 };

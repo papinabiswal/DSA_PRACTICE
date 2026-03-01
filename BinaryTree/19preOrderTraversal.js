@@ -1,3 +1,12 @@
+// Time Complexity: O(n)
+// Each node is visited exactly once.
+// n = number of nodes in the tree.
+
+// Space Complexity (SC)
+// O(h) → recursion call stack 
+// O(n) → result array storing all node values
+// Overall worst-case space complexity = O(n)
+
 // 144. Binary Tree Preorder Traversal
 // PLR- > Print, Left, Right
 

@@ -5,7 +5,16 @@ function countNodes(root) {
     return 1 + countNodes(root.left) + countNodes(root.right);
 }
 
-// count node O(1) time complexity
+
+// Compute left height → O(h)
+
+// Compute right height → O(h)
+
+// If equal → return 2^h - 1
+
+// Else → recursively solve left and right
+// time complexity: O((log n)^2)
+// space complexity: O(log n) due to recursion stack
 var countNodes = function(root) {
     if(!root) return 0;
 
