@@ -16,7 +16,7 @@ function partition(arr, low, high){
        while(i <= j && arr[i] <= pivot ){
            i++;
        } 
-        while(pivot > arr[j]){
+        while(pivot < arr[j]){
             j--;
         }
 

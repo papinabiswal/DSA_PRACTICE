@@ -49,3 +49,28 @@ function longestAlphaNumericSubarray(arr) {
     }
     return maxLen;
 }
+
+// Longest Subarray with Sum K
+
+   function longestSubarray(nums, k) {
+    let map = new Map();
+    map.set(0, -1);   // prefix sum 0 at index -1
+
+    let sum = 0;
+    let maxLength = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i];
+
+        if (map.has(sum - k)) {
+            maxLength = Math.max(maxLength, i - map.get(sum - k));
+        }
+
+        // store first occurrence only
+        if (!map.has(sum)) {
+            map.set(sum, i);
+        }
+    }
+
+    return maxLength;
+}
